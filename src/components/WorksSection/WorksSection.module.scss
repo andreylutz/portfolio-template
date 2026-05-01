@@ -1,0 +1,148 @@
+.section {
+  padding: clamp(2.75rem, 6vw, 4.5rem) 0;
+  border-top: 1px solid var(--color-border-section);
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}
+
+h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-text-primary);
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: stretch;
+}
+
+.control {
+  width: 40px;
+  min-width: 40px;
+  align-self: center;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-control);
+  color: var(--color-text-control);
+  background: var(--color-surface-control);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.control:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface-control-hover);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  border: 1px solid var(--color-border-project);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-surface-project);
+}
+
+.preview {
+  min-height: 100%;
+}
+
+.preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.meta {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.meta h3 {
+  font-size: 1.08rem;
+  color: var(--color-text-project-title);
+}
+
+.meta p {
+  color: var(--color-text-muted);
+}
+
+.stackList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.stackList li {
+  font-size: 0.8rem;
+  border: 1px solid var(--color-border-stack);
+  color: var(--color-text-stack);
+  background: var(--color-surface-stack);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+}
+
+.demoLink {
+  width: fit-content;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--color-border-link);
+  color: var(--color-text-link);
+  padding: 0.45rem 0.68rem;
+  border-radius: 8px;
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.dots button {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-dot);
+  background: var(--color-surface-dot);
+  cursor: pointer;
+  padding: 0;
+}
+
+.activeDot {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+@media (max-width: 930px) {
+  .project {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .control {
+    justify-self: center;
+  }
+}

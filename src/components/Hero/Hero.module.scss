@@ -1,0 +1,29 @@
+.hero {
+  min-height: min(72vh, 760px);
+  display: grid;
+  align-items: end;
+  padding: clamp(4rem, 8vw, 6rem) 0 clamp(2.25rem, 6vw, 4rem);
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  max-width: 760px;
+}
+
+.kicker {
+  color: var(--color-accent);
+  font-size: 0.86rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--color-text-hero);
+}
+
+p {
+  color: var(--color-text-soft);
+  font-size: 1.02rem;
+  max-width: 65ch;
+}
