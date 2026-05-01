@@ -1,0 +1,12 @@
+.site {
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(var(--color-bg-overlay-rgb), 0.88) 0%,
+      rgba(var(--color-bg-overlay-rgb), 0.98) 46%,
+      var(--color-bg-base) 100%
+    ),
+    url("https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1600&q=80")
+      center top / cover no-repeat fixed;
+}
