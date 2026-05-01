@@ -7,15 +7,96 @@ import styles from "./WorksSection.module.scss";
 const WorksSection = () => {
   const { t } = useTranslation();
   const items = t("works.items", { returnObjects: true }) as ProjectItem[];
-  const [activeSlide, setActiveSlide] = useState(0);
-  const currentProject = items[activeSlide];
+  const hasLoop = items.length > 1;
+  const loopedItems = hasLoop ? [items[items.length - 1], ...items, items[0]] : items;
+  const [slideIndex, setSlideIndex] = useState(hasLoop ? 1 : 0);
+  const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const canNavigate = items.length > 1;
+  const activeSlide = hasLoop
+    ? (slideIndex - 1 + items.length) % items.length
+    : slideIndex;
 
   const nextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % items.length);
+    if (!canNavigate || isAnimating) {
+      return;
+    }
+
+    setIsAnimating(true);
+    setIsTransitionEnabled(true);
+    setSlideIndex((prev) => prev + 1);
   };
 
   const prevSlide = () => {
-    setActiveSlide((prev) => (prev - 1 + items.length) % items.length);
+    if (!canNavigate || isAnimating) {
+      return;
+    }
+
+    setIsAnimating(true);
+    setIsTransitionEnabled(true);
+    setSlideIndex((prev) => prev - 1);
+  };
+
+  const goToSlide = (index: number) => {
+    if (!canNavigate || isAnimating || index === activeSlide) {
+      return;
+    }
+
+    setIsAnimating(true);
+    setIsTransitionEnabled(true);
+    setSlideIndex(hasLoop ? index + 1 : index);
+  };
+
+  const handleTrackTransitionEnd = () => {
+    if (!hasLoop) {
+      setIsAnimating(false);
+      return;
+    }
+
+    if (slideIndex === 0 || slideIndex === items.length + 1) {
+      setIsTransitionEnabled(false);
+      setSlideIndex(slideIndex === 0 ? items.length : 1);
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setIsTransitionEnabled(true);
+          setIsAnimating(false);
+        });
+      });
+
+      return;
+    }
+
+    setIsAnimating(false);
+  };
+
+  const trackStyle = {
+    transform: `translateX(calc(-${slideIndex} * (100% + var(--carousel-gap))))`
+  };
+
+  const renderProjectCard = (project: ProjectItem, key: string) => {
+    return (
+      <article key={key} className={styles.slide}>
+        <div className={styles.project}>
+          <div className={styles.preview}>
+            <img src={project.previewUrl} alt={`${project.title} preview`} />
+          </div>
+          <div className={styles.meta}>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <ul className={styles.stackList}>
+              {project.stack.map((item) => (
+                <li key={`${project.title}-${item}`}>{item}</li>
+              ))}
+            </ul>
+            <a href={project.demoUrl} className={styles.demoLink}>
+              <span>{t("works.openDemo")}</span>
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </article>
+    );
   };
 
   return (
@@ -28,34 +109,29 @@ const WorksSection = () => {
             type="button"
             aria-label={t("works.prevAria")}
             onClick={prevSlide}
+            disabled={!canNavigate || isAnimating}
           >
             <ChevronLeft size={18} />
           </button>
 
-          <article className={styles.project}>
-            <div className={styles.preview}>
-              <img src={currentProject.previewUrl} alt={`${currentProject.title} preview`} />
+          <div className={styles.viewport}>
+            <div
+              className={`${styles.track} ${isTransitionEnabled ? styles.trackAnimated : ""}`}
+              style={trackStyle}
+              onTransitionEnd={handleTrackTransitionEnd}
+            >
+              {loopedItems.map((project, index) =>
+                renderProjectCard(project, `${project.title}-${index}`)
+              )}
             </div>
-            <div className={styles.meta}>
-              <h3>{currentProject.title}</h3>
-              <p>{currentProject.description}</p>
-              <ul className={styles.stackList}>
-                {currentProject.stack.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <a href={currentProject.demoUrl} className={styles.demoLink}>
-                <span>{t("works.openDemo")}</span>
-                <ExternalLink size={16} aria-hidden="true" />
-              </a>
-            </div>
-          </article>
+          </div>
 
           <button
             className={styles.control}
             type="button"
             aria-label={t("works.nextAria")}
             onClick={nextSlide}
+            disabled={!canNavigate || isAnimating}
           >
             <ChevronRight size={18} />
           </button>
@@ -70,7 +146,8 @@ const WorksSection = () => {
               aria-label={`Слайд ${index + 1}`}
               aria-selected={index === activeSlide}
               className={index === activeSlide ? styles.activeDot : ""}
-              onClick={() => setActiveSlide(index)}
+              onClick={() => goToSlide(index)}
+              disabled={!canNavigate || isAnimating}
             />
           ))}
         </div>

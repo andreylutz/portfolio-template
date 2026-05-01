@@ -43,13 +43,43 @@ h2 {
   background: var(--color-surface-control-hover);
 }
 
+.control:active {
+  transform: scale(0.96);
+}
+
+.control:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
+.viewport {
+  --carousel-gap: 28px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-project);
+  background: var(--color-surface-project);
+}
+
 .project {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  border: 1px solid var(--color-border-project);
-  border-radius: 8px;
+  border: 0;
   overflow: hidden;
   background: var(--color-surface-project);
+}
+
+.track {
+  display: flex;
+  gap: var(--carousel-gap);
+  will-change: transform;
+}
+
+.trackAnimated {
+  transition: transform 860ms cubic-bezier(0.22, 0.85, 0.2, 1);
+}
+
+.slide {
+  flex: 0 0 100%;
 }
 
 .preview {
@@ -124,11 +154,21 @@ h2 {
   background: var(--color-surface-dot);
   cursor: pointer;
   padding: 0;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.dots button:hover {
+  transform: scale(1.16);
+}
+
+.dots button:disabled {
+  cursor: default;
 }
 
 .activeDot {
   background: var(--color-accent) !important;
   border-color: var(--color-accent) !important;
+  transform: scale(1.2);
 }
 
 @media (max-width: 930px) {

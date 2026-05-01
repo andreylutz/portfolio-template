@@ -27,7 +27,10 @@ const ExperienceSection = () => {
               </ul>
               <ul className={styles.highlights}>
                 {item.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
+                  <li key={highlight}>
+                    <span className={styles.connector} aria-hidden="true" />
+                    {highlight}
+                  </li>
                 ))}
               </ul>
             </li>
