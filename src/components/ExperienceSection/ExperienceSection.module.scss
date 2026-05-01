@@ -147,21 +147,3 @@ h3 {
   top: 0;
   bottom: 50%;
 }
-
-.impact {
-  margin-top: 0.82rem;
-  border-radius: 8px;
-  border: 1px solid rgba(var(--color-accent-2-rgb), 0.4);
-  background: rgba(var(--color-accent-2-rgb), 0.08);
-  color: var(--color-text-soft);
-  padding: 0.58rem 0.72rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .section,
-  .experienceList > li {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
