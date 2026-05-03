@@ -1,6 +1,14 @@
 .section {
   padding: clamp(2.75rem, 6vw, 4.5rem) 0;
   border-top: 1px solid var(--color-border-section);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 {
@@ -10,6 +18,12 @@ h2 {
   color: var(--color-text-primary);
   font-size: clamp(1.35rem, 3vw, 1.9rem);
   margin-bottom: 1.1rem;
+}
+
+.intro {
+  color: var(--color-text-muted);
+  max-width: 74ch;
+  margin-bottom: 1rem;
 }
 
 .experienceList {
@@ -25,6 +39,15 @@ h2 {
   border: 1px solid var(--color-border-exp);
   border-radius: 8px;
   padding: 1rem;
+  transform: translateY(16px);
+  opacity: 0;
+  transition: opacity 340ms ease, transform 340ms ease;
+  transition-delay: calc(110ms + var(--item-index) * 90ms);
+}
+
+.visible .experienceList > li {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .period {
@@ -123,4 +146,22 @@ h3 {
 .highlights li:last-child .connector {
   top: 0;
   bottom: 50%;
+}
+
+.impact {
+  margin-top: 0.82rem;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--color-accent-2-rgb), 0.4);
+  background: rgba(var(--color-accent-2-rgb), 0.08);
+  color: var(--color-text-soft);
+  padding: 0.58rem 0.72rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .experienceList > li {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

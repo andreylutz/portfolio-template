@@ -9,6 +9,7 @@ export type ExperienceItem = {
   role: string;
   stack: string[];
   highlights: string[];
+  impact?: string;
 };
 
 export type ProjectItem = {
@@ -17,4 +18,6 @@ export type ProjectItem = {
   stack: string[];
   previewUrl: string;
   demoUrl: string;
+  period?: string;
+  result?: string;
 };

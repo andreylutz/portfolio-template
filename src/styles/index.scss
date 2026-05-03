@@ -28,6 +28,7 @@ body,
 body {
   min-height: 100vh;
   background: var(--color-bg-base);
+  color: var(--color-text-base);
 }
 
 a {
@@ -42,6 +43,10 @@ p {
 }
 
 .container {
-  width: min(1120px, 100% - 2rem);
+  width: min(1160px, 100% - 2rem);
   margin-inline: auto;
+}
+
+::selection {
+  background: rgba(var(--color-accent-rgb), 0.36);
 }

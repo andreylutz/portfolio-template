@@ -6,7 +6,7 @@ describe("App", () => {
   it("renders headline", () => {
     render(<App />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      /frontend-разработчик|frontend developer/i
+      /интерфейсы|interfaces/i
     );
   });
 });
