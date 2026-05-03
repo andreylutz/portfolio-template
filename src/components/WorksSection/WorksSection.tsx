@@ -1,12 +1,14 @@
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import useReveal from "../../hooks/useReveal";
 import type { ProjectItem } from "../../types";
 import styles from "./WorksSection.module.scss";
 
 const WorksSection = () => {
   const { t } = useTranslation();
   const items = t("works.items", { returnObjects: true }) as ProjectItem[];
+  const { ref, isVisible } = useReveal<HTMLElement>();
   const hasLoop = items.length > 1;
   const loopedItems = hasLoop ? [items[items.length - 1], ...items, items[0]] : items;
   const [slideIndex, setSlideIndex] = useState(hasLoop ? 1 : 0);
@@ -75,6 +77,8 @@ const WorksSection = () => {
   };
 
   const renderProjectCard = (project: ProjectItem, key: string) => {
+    const isDemoAvailable = project.demoUrl !== "#";
+
     return (
       <article key={key} className={styles.slide}>
         <div className={styles.project}>
@@ -82,17 +86,29 @@ const WorksSection = () => {
             <img src={project.previewUrl} alt={`${project.title} preview`} />
           </div>
           <div className={styles.meta}>
-            <h3>{project.title}</h3>
+            <div className={styles.metaTop}>
+              <h3>{project.title}</h3>
+              {project.period ? <span>{project.period}</span> : null}
+            </div>
             <p>{project.description}</p>
             <ul className={styles.stackList}>
               {project.stack.map((item) => (
                 <li key={`${project.title}-${item}`}>{item}</li>
               ))}
             </ul>
-            <a href={project.demoUrl} className={styles.demoLink}>
-              <span>{t("works.openDemo")}</span>
-              <ExternalLink size={16} aria-hidden="true" />
-            </a>
+            {project.result ? (
+              <p className={styles.result}>
+                <strong>{t("works.resultLabel")}:</strong> {project.result}
+              </p>
+            ) : null}
+            {isDemoAvailable ? (
+              <a href={project.demoUrl} className={styles.demoLink}>
+                <span>{t("works.openDemo")}</span>
+                <ExternalLink size={16} aria-hidden="true" />
+              </a>
+            ) : (
+              <span className={styles.noDemo}>{t("works.noDemo")}</span>
+            )}
           </div>
         </div>
       </article>
@@ -100,9 +116,14 @@ const WorksSection = () => {
   };
 
   return (
-    <section id="works" className={styles.section}>
+    <section
+      id="works"
+      ref={ref}
+      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
+    >
       <div className={`container ${styles.content}`}>
         <h2>{t("works.title")}</h2>
+        <p className={styles.subtitle}>{t("works.subtitle")}</p>
         <div className={styles.carousel}>
           <button
             className={styles.control}
@@ -143,7 +164,7 @@ const WorksSection = () => {
               key={project.title}
               type="button"
               role="tab"
-              aria-label={`Слайд ${index + 1}`}
+              aria-label={`${t("works.slideAria")} ${index + 1}`}
               aria-selected={index === activeSlide}
               className={index === activeSlide ? styles.activeDot : ""}
               onClick={() => goToSlide(index)}
@@ -151,6 +172,9 @@ const WorksSection = () => {
             />
           ))}
         </div>
+        <p className={styles.counter}>
+          {String(activeSlide + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+        </p>
       </div>
     </section>
   );

@@ -1,22 +1,33 @@
 import { Wrench } from "lucide-react";
+import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
+import useReveal from "../../hooks/useReveal";
 import type { ExperienceItem } from "../../types";
 import styles from "./ExperienceSection.module.scss";
 
 const ExperienceSection = () => {
   const { t } = useTranslation();
   const items = t("experience.items", { returnObjects: true }) as ExperienceItem[];
+  const { ref, isVisible } = useReveal<HTMLElement>();
 
   return (
-    <section id="experience" className={styles.section}>
+    <section
+      id="experience"
+      ref={ref}
+      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
+    >
       <div className="container">
         <h2>
           <Wrench aria-hidden="true" size={18} />
           <span>{t("experience.title")}</span>
         </h2>
+        <p className={styles.intro}>{t("experience.intro")}</p>
         <ul className={styles.experienceList}>
-          {items.map((item) => (
-            <li key={item.period + item.company}>
+          {items.map((item, index) => (
+            <li
+              key={item.period + item.company}
+              style={{ "--item-index": index } as CSSProperties}
+            >
               <p className={styles.period}>{item.period}</p>
               <h3>{item.company}</h3>
               <p className={styles.role}>{item.role}</p>
@@ -33,6 +44,7 @@ const ExperienceSection = () => {
                   </li>
                 ))}
               </ul>
+              {item.impact ? <p className={styles.impact}>{item.impact}</p> : null}
             </li>
           ))}
         </ul>
