@@ -131,12 +131,26 @@ const ru = {
   },
   works: {
     title: "Проекты и кейсы",
-    subtitle:
-      "Подборка mock-проектов для демонстрации структуры, подачи и глубины проработки интерфейсов.",
-    openRepo: "Репозиторий",
-    openProject: "Открыть проект",
+    subtitle: "Несколько направлений, где я отвечал за UX-логику, код и интеграции до результата.",
+    openDemo: "Открыть демо",
+    noDemo: "Демо по запросу",
+    prevAria: "Предыдущий проект",
+    nextAria: "Следующий проект",
+    dotsAria: "Переключение проектов",
+    slideAria: "Слайд",
     resultLabel: "Эффект",
     items: [
+      {
+        title: "Robo Control Dashboard",
+        period: "2024",
+        description:
+          "Панель мониторинга роботизированных модулей: статусы, события, телеметрия и сценарии реакции в реальном времени.",
+        stack: ["React", "TypeScript", "Charts", "WebSocket"],
+        previewUrl:
+          "https://images.unsplash.com/photo-1581092160607-ee22731d8ad7?auto=format&fit=crop&w=1280&q=80",
+        demoUrl: "#",
+        result: "Снижение времени диагностики инцидентов у операторов."
+      },
       {
         title: "Autonomous Navigation System",
         period: "2023",
@@ -145,8 +159,7 @@ const ru = {
         stack: ["Vue", "TypeScript", "Map UI", "State Machines"],
         previewUrl:
           "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1280&q=80",
-        repoUrl: "https://github.com/andLucenko/autonomous-navigation-system",
-        projectUrl: "https://demo-autonomous-navigation.vercel.app",
+        demoUrl: "#",
         result: "Быстрее запуск новых сценариев без правок на стороне устройства."
       },
       {
@@ -157,45 +170,8 @@ const ru = {
         stack: ["React", "Redux", "Vite", "WebSocket"],
         previewUrl:
           "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1280&q=80",
-        repoUrl: "https://github.com/andLucenko/robotics-ops-console",
-        projectUrl: "https://demo-robotics-ops-console.vercel.app",
+        demoUrl: "#",
         result: "Единая точка контроля вместо разрозненных сервисных экранов."
-      },
-      {
-        title: "Fleet Maintenance Planner",
-        period: "2022",
-        description:
-          "Планировщик технического обслуживания: календарь работ, прогнозы отказов и статус выполнения регламентов по объектам.",
-        stack: ["React", "TypeScript", "TanStack Table", "Calendar UI"],
-        previewUrl:
-          "https://images.unsplash.com/photo-1581091012184-5c8f78f7d99d?auto=format&fit=crop&w=1280&q=80",
-        repoUrl: "https://github.com/mock-org/fleet-maintenance-planner",
-        projectUrl: "https://mock-fleet-maintenance.vercel.app",
-        result: "Сокращение ручного планирования и меньше пропусков критичных ТО."
-      },
-      {
-        title: "Industrial Alarm Center",
-        period: "2021",
-        description:
-          "Центр обработки тревог для производственной площадки: приоритизация, фильтры по зоне риска и журнал подтверждений.",
-        stack: ["Vue 3", "Pinia", "WebSocket", "ECharts"],
-        previewUrl:
-          "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1280&q=80",
-        repoUrl: "https://github.com/mock-org/industrial-alarm-center",
-        projectUrl: "https://mock-alarm-center.vercel.app",
-        result: "Быстрее реакция дежурных смен и прозрачная история инцидентов."
-      },
-      {
-        title: "Energy Flow Analytics",
-        period: "2021",
-        description:
-          "Аналитическая витрина энергопотребления: графики потоков, аномалии по узлам и контроль расхода по сменам.",
-        stack: ["React", "D3.js", "TypeScript", "REST API"],
-        previewUrl:
-          "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1280&q=80",
-        repoUrl: "https://github.com/mock-org/energy-flow-analytics",
-        projectUrl: "https://mock-energy-flow.vercel.app",
-        result: "Улучшение контроля потребления и более быстрый поиск потерь."
       }
     ]
   },
