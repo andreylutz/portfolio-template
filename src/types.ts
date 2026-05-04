@@ -17,7 +17,8 @@ export type ProjectItem = {
   description: string;
   stack: string[];
   previewUrl: string;
-  demoUrl: string;
+  projectUrl: string;
+  repoUrl: string;
   period?: string;
   result?: string;
 };
