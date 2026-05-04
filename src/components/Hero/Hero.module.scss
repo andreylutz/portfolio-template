@@ -3,6 +3,31 @@
   display: grid;
   align-items: center;
   padding: clamp(4rem, 8vw, 6.4rem) 0 clamp(2.6rem, 6vw, 4.8rem);
+  position: relative;
+  overflow: clip;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% 28%, rgba(var(--color-accent-rgb), 0.14) 0%, transparent 46%),
+    radial-gradient(circle at 76% 68%, rgba(var(--color-accent-2-rgb), 0.12) 0%, transparent 48%),
+    linear-gradient(
+      180deg,
+      rgba(var(--color-bg-overlay-rgb), 0.38) 0%,
+      rgba(var(--color-bg-overlay-rgb), 0.66) 56%,
+      rgba(var(--color-bg-overlay-rgb), 0.84) 100%
+    );
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .content {
@@ -10,6 +35,7 @@
   gap: clamp(1.15rem, 3vw, 1.7rem);
   max-width: 920px;
   position: relative;
+  z-index: 1;
   animation: fade-up 620ms ease both;
 }
 
@@ -212,5 +238,14 @@ h1 {
 
   .glowLine {
     animation: none;
+  }
+
+  .hero::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--color-bg-overlay-rgb), 0.54) 0%,
+        rgba(var(--color-bg-overlay-rgb), 0.82) 100%
+      );
   }
 }

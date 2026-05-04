@@ -131,26 +131,12 @@ const en = {
   },
   works: {
     title: "Projects & Cases",
-    subtitle: "Selected directions where I owned UX logic, frontend delivery, and integration quality.",
-    openDemo: "Open Demo",
-    noDemo: "Demo by request",
-    prevAria: "Previous project",
-    nextAria: "Next project",
-    dotsAria: "Project switcher",
-    slideAria: "Slide",
+    subtitle:
+      "A curated set of mock projects that demonstrates structure, visual direction, and product-level UI thinking.",
+    openRepo: "Repository",
+    openProject: "Open Project",
     resultLabel: "Impact",
     items: [
-      {
-        title: "Robo Control Dashboard",
-        period: "2024",
-        description:
-          "Monitoring workspace for robotic modules with real-time statuses, event feeds, telemetry, and response scenarios.",
-        stack: ["React", "TypeScript", "Charts", "WebSocket"],
-        previewUrl:
-          "https://images.unsplash.com/photo-1581092160607-ee22731d8ad7?auto=format&fit=crop&w=1280&q=80",
-        demoUrl: "#",
-        result: "Reduced incident diagnostics time for operators."
-      },
       {
         title: "Autonomous Navigation System",
         period: "2023",
@@ -159,7 +145,8 @@ const en = {
         stack: ["Vue", "TypeScript", "Map UI", "State Machines"],
         previewUrl:
           "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1280&q=80",
-        demoUrl: "#",
+        repoUrl: "https://github.com/andLucenko/autonomous-navigation-system",
+        projectUrl: "https://demo-autonomous-navigation.vercel.app",
         result: "Faster rollout of new scenarios without device-side code changes."
       },
       {
@@ -170,8 +157,45 @@ const en = {
         stack: ["React", "Redux", "Vite", "WebSocket"],
         previewUrl:
           "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1280&q=80",
-        demoUrl: "#",
+        repoUrl: "https://github.com/andLucenko/robotics-ops-console",
+        projectUrl: "https://demo-robotics-ops-console.vercel.app",
         result: "One control surface instead of fragmented service screens."
+      },
+      {
+        title: "Fleet Maintenance Planner",
+        period: "2022",
+        description:
+          "Maintenance planning workspace with service calendar, failure-risk indicators, and regulation compliance tracking.",
+        stack: ["React", "TypeScript", "TanStack Table", "Calendar UI"],
+        previewUrl:
+          "https://images.unsplash.com/photo-1581091012184-5c8f78f7d99d?auto=format&fit=crop&w=1280&q=80",
+        repoUrl: "https://github.com/mock-org/fleet-maintenance-planner",
+        projectUrl: "https://mock-fleet-maintenance.vercel.app",
+        result: "Reduced manual scheduling overhead and fewer missed critical services."
+      },
+      {
+        title: "Industrial Alarm Center",
+        period: "2021",
+        description:
+          "Alarm control center for industrial facilities with risk-priority queues, zone filters, and acknowledgment logs.",
+        stack: ["Vue 3", "Pinia", "WebSocket", "ECharts"],
+        previewUrl:
+          "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1280&q=80",
+        repoUrl: "https://github.com/mock-org/industrial-alarm-center",
+        projectUrl: "https://mock-alarm-center.vercel.app",
+        result: "Faster operator response and complete incident traceability."
+      },
+      {
+        title: "Energy Flow Analytics",
+        period: "2021",
+        description:
+          "Analytics dashboard for energy flows with node-level anomaly detection and shift-based consumption insights.",
+        stack: ["React", "D3.js", "TypeScript", "REST API"],
+        previewUrl:
+          "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1280&q=80",
+        repoUrl: "https://github.com/mock-org/energy-flow-analytics",
+        projectUrl: "https://mock-energy-flow.vercel.app",
+        result: "Better consumption control and faster loss detection."
       }
     ]
   },

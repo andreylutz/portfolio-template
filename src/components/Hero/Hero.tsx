@@ -1,6 +1,7 @@
 import { Mail, Send } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
+import ThreeHeroScene from "./ThreeHeroScene";
 import styles from "./Hero.module.scss";
 
 type HeroMetric = {
@@ -15,6 +16,7 @@ const Hero = () => {
 
   return (
     <section className={styles.hero}>
+      <ThreeHeroScene className={styles.scene} />
       <div className={`container ${styles.content}`}>
         <div className={styles.glowLine} aria-hidden="true" />
         <div className={styles.intro}>
