@@ -1,6 +1,6 @@
 const ru = {
   header: {
-    brand: "Andrey Lucenko",
+    brand: "Андрей Луценко",
     navAriaLabel: "Основная навигация",
     languageAriaLabel: "Переключение языка"
   },
