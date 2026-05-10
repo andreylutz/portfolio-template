@@ -62,8 +62,11 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       mountNode.appendChild(renderer.domElement);
 
+      const focalGroup = new THREE.Group();
+      scene.add(focalGroup);
+
       const rootGroup = new THREE.Group();
-      scene.add(rootGroup);
+      focalGroup.add(rootGroup);
 
       const coreGeometry = new THREE.IcosahedronGeometry(1.25, 3);
       const coreMaterial = new THREE.MeshPhysicalMaterial({
@@ -83,7 +86,7 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
         color: 0xf2a23a,
         wireframe: true,
         transparent: true,
-        opacity: 0.45
+        opacity: 0.26
       });
       const wireMesh = new THREE.Mesh(wireGeometry, wireMaterial);
       rootGroup.add(wireMesh);
@@ -92,7 +95,7 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
       const ringMaterial = new THREE.MeshBasicMaterial({
         color: 0x7ff0ff,
         transparent: true,
-        opacity: 0.22
+        opacity: 0.14
       });
       const ringGeometry = new THREE.TorusGeometry(2.6, 0.015, 16, 120);
       const ringA = new THREE.Mesh(ringGeometry, ringMaterial);
@@ -102,7 +105,7 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
       ringB.rotation.y = Math.PI / 3;
       ringC.rotation.z = Math.PI / 4.2;
       rings.add(ringA, ringB, ringC);
-      scene.add(rings);
+      focalGroup.add(rings);
 
       const pointsGeometry = new THREE.BufferGeometry();
       const pointCount = 900;
@@ -155,6 +158,8 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
 
       const pointerTarget = { x: 0, y: 0 };
       const pointerCurrent = { x: 0, y: 0 };
+      let baseShiftX = 0;
+      let sceneScale = 1;
 
       const onPointerMove = (event: PointerEvent) => {
         const rect = mountNode.getBoundingClientRect();
@@ -170,6 +175,23 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
         const height = mountNode.clientHeight;
         if (!width || !height) {
           return;
+        }
+
+        if (width >= 2500) {
+          baseShiftX = 2.65;
+          sceneScale = 0.86;
+        } else if (width >= 2100) {
+          baseShiftX = 2.25;
+          sceneScale = 0.9;
+        } else if (width >= 1700) {
+          baseShiftX = 1.85;
+          sceneScale = 0.94;
+        } else if (width >= 1400) {
+          baseShiftX = 1.4;
+          sceneScale = 0.97;
+        } else {
+          baseShiftX = 0.95;
+          sceneScale = 1;
         }
 
         camera.aspect = width / height;
@@ -197,10 +219,13 @@ const ThreeHeroScene = ({ className }: ThreeHeroSceneProps) => {
         pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.035;
         pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.035;
 
+        focalGroup.position.x = baseShiftX + pointerCurrent.x * 0.12;
+        focalGroup.position.y = pointerCurrent.y * -0.08;
         rootGroup.rotation.y = elapsed * 0.22 + pointerCurrent.x * 0.32;
         rootGroup.rotation.x = elapsed * 0.08 + pointerCurrent.y * 0.2;
-        rootGroup.position.x = pointerCurrent.x * 0.42;
-        rootGroup.position.y = pointerCurrent.y * -0.24;
+        rootGroup.scale.setScalar(sceneScale);
+        rootGroup.position.x = pointerCurrent.x * 0.12;
+        rootGroup.position.y = pointerCurrent.y * -0.08;
 
         wireMesh.rotation.x = -elapsed * 0.16;
         wireMesh.rotation.z = elapsed * 0.2;
