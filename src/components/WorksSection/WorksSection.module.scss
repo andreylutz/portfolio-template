@@ -33,7 +33,7 @@ h2 {
 .list {
   display: grid;
   gap: 0;
-  padding-top: 0.3rem;
+  padding-top: 0.25rem;
   border-top: 1px solid rgba(var(--color-accent-rgb), 0.18);
 }
 
@@ -42,11 +42,11 @@ h2 {
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(1rem, 2.6vw, 2rem);
-  padding: clamp(1.35rem, 3vw, 2.25rem) 0;
+  padding: clamp(1.4rem, 3vw, 2.3rem) 0;
   border-bottom: 1px solid rgba(var(--color-accent-rgb), 0.16);
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 420ms ease, transform 420ms ease, filter 320ms ease;
+  transition: opacity 420ms ease, transform 420ms ease;
   transition-delay: calc(var(--item-index) * 80ms);
   scroll-margin-top: 92px;
 }
@@ -54,10 +54,6 @@ h2 {
 .cardVisible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.card:hover {
-  filter: saturate(1.06);
 }
 
 .reversed {
@@ -78,17 +74,6 @@ h2 {
   overflow: hidden;
   border: 1px solid rgba(var(--color-accent-rgb), 0.24);
   box-shadow: 0 16px 34px rgba(3, 9, 16, 0.42);
-  position: relative;
-}
-
-.media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 0.3) 100%);
-  opacity: 0.6;
-  transition: opacity 320ms ease;
 }
 
 .media img {
@@ -103,10 +88,6 @@ h2 {
 
 .card:hover .media img {
   transform: scale(1.06);
-}
-
-.card:hover .media::after {
-  opacity: 0.2;
 }
 
 .meta {
@@ -184,7 +165,6 @@ h2 {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.38rem;
   border: 1px solid rgba(var(--color-accent-rgb), 0.36);
   color: var(--color-text-link);
@@ -202,58 +182,24 @@ h2 {
   .card,
   .reversed {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.95rem;
   }
 
   .reversed .media,
   .reversed .meta {
     order: initial;
   }
-}
 
   .media {
     box-shadow: 0 12px 28px rgba(3, 9, 16, 0.35);
   }
-
-  .description {
-    max-width: 100%;
-  }
 }
 
 @media (max-width: 760px) {
-  .section {
-    padding: 2.8rem 0;
-  }
-
   .metaTop {
     align-items: start;
     flex-direction: column;
     gap: 0.22rem;
-  }
-
-  .links {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .links a {
-    width: 100%;
-    min-height: 42px;
-  }
-}
-
-@media (max-width: 540px) {
-  .links {
-    grid-template-columns: 1fr;
-  }
-
-  .metaTop h3 {
-    font-size: clamp(1.1rem, 6.2vw, 1.34rem);
-  }
-
-  .description {
-    font-size: 0.92rem;
-    line-height: 1.58;
   }
 }
 
