@@ -2,7 +2,9 @@ const en = {
   header: {
     brand: "Andrey Lucenko",
     navAriaLabel: "Main navigation",
-    languageAriaLabel: "Language switcher"
+    languageAriaLabel: "Language switcher",
+    openMenuAriaLabel: "Open menu",
+    closeMenuAriaLabel: "Close menu"
   },
   nav: [
     { label: "Profile", href: "#about" },

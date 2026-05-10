@@ -13,7 +13,7 @@
 
 .headline {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.84rem;
 }
 
 .lead {
@@ -37,17 +37,20 @@ p {
 }
 
 .grid {
-  margin-top: 1.2rem;
+  margin-top: 1.35rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.86fr);
+  gap: 1rem 1.1rem;
 }
 
 .valueBlock {
   border-radius: 8px;
   border: 1px solid var(--color-border-exp);
-  background: var(--color-surface-exp);
-  padding: 1rem;
+  background:
+    linear-gradient(150deg, rgba(var(--color-accent-rgb), 0.06) 0%, transparent 54%),
+    var(--color-surface-exp);
+  padding: clamp(0.92rem, 1.5vw, 1.2rem);
+  box-shadow: 0 12px 28px rgba(2, 8, 14, 0.3);
 }
 
 .valueBlock h3 {
@@ -74,13 +77,17 @@ p {
   color: var(--color-text-soft);
   transform: translateY(12px);
   opacity: 0;
-  transition: opacity 300ms ease, transform 300ms ease;
+  transition: opacity 300ms ease, transform 300ms ease, border-color 280ms ease;
   transition-delay: calc(var(--item-index) * 80ms + 120ms);
 }
 
 .visible .values li {
   transform: translateY(0);
   opacity: 1;
+}
+
+.values li:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.62);
 }
 
 .side {
@@ -92,7 +99,8 @@ p {
   border-radius: 8px;
   border: 1px solid var(--color-border-skill);
   background: var(--color-surface-skill);
-  padding: 0.85rem;
+  padding: 0.9rem;
+  box-shadow: 0 10px 24px rgba(2, 8, 14, 0.28);
 }
 
 .metaCard h3 {
@@ -148,11 +156,51 @@ p {
 .contacts a {
   color: var(--color-accent);
   text-decoration: none;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: 2.6rem 0;
+  }
+
+  .side {
+    grid-template-columns: 1fr;
+  }
+
+  .contacts li {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.38rem 0.48rem;
+  }
+
+  .contacts li span {
+    grid-column: 2;
+    font-size: 0.84rem;
+  }
+
+  .contacts li a {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 540px) {
+  .lead {
+    font-size: 0.95rem;
+  }
+
+  .values li {
+    padding: 0.56rem 0.62rem;
   }
 }
 

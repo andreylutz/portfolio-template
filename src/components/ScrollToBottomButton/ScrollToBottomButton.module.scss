@@ -1,7 +1,7 @@
 .button {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: max(0.8rem, env(safe-area-inset-right));
+  bottom: max(0.8rem, env(safe-area-inset-bottom));
   width: 42px;
   min-width: 42px;
   aspect-ratio: 1;
@@ -21,6 +21,13 @@
   border-color: var(--color-accent);
   background: var(--color-surface-control-hover);
   transform: translateY(-2px);
+}
+
+@media (max-width: 760px) {
+  .button {
+    width: 44px;
+    min-width: 44px;
+  }
 }
 
 @keyframes lift-in {

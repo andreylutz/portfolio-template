@@ -35,19 +35,26 @@ h2 {
 }
 
 .experienceList > li {
-  background: var(--color-surface-exp);
+  background:
+    linear-gradient(150deg, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 58%),
+    var(--color-surface-exp);
   border: 1px solid var(--color-border-exp);
   border-radius: 8px;
-  padding: 1rem;
+  padding: clamp(0.92rem, 1.5vw, 1.1rem);
   transform: translateY(16px);
   opacity: 0;
-  transition: opacity 340ms ease, transform 340ms ease;
+  transition: opacity 340ms ease, transform 340ms ease, border-color 260ms ease;
   transition-delay: calc(110ms + var(--item-index) * 90ms);
+  box-shadow: 0 12px 30px rgba(2, 8, 14, 0.28);
 }
 
 .visible .experienceList > li {
   transform: translateY(0);
   opacity: 1;
+}
+
+.experienceList > li:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.56);
 }
 
 .period {
@@ -155,6 +162,46 @@ h3 {
   background: rgba(var(--color-accent-2-rgb), 0.08);
   color: var(--color-text-soft);
   padding: 0.58rem 0.72rem;
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: 2.6rem 0;
+  }
+
+  .highlights li {
+    padding: 0.64rem 0.7rem 0.64rem 1.8rem;
+    font-size: 0.94rem;
+  }
+
+  .highlights li::before {
+    left: 0.3rem;
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .highlights li::after {
+    left: 0.83rem;
+    width: 0.72rem;
+  }
+
+  .connector {
+    left: 0.54rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .period {
+    font-size: 0.8rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .stack li {
+    font-size: 0.73rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
