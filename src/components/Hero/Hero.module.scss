@@ -239,12 +239,34 @@ h1 {
     align-items: end;
   }
 
+  .content {
+    height: auto;
+    min-height: 0;
+    gap: 1rem;
+  }
+
   .glowLine {
     inset: auto 0 100% 0;
   }
 
+  .primaryAction,
+  .secondaryAction {
+    height: auto;
+    min-height: 42px;
+  }
+
+  .focusTags {
+    height: auto;
+  }
+
   .metrics {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .metrics li {
+    height: auto;
+    min-height: 88px;
   }
 }
 
@@ -331,6 +353,14 @@ h1 {
 }
 
 @media (max-width: 480px) {
+  h1 {
+    font-size: clamp(1.95rem, 9vw, 2.3rem);
+  }
+
+  .description {
+    font-size: 0.96rem;
+  }
+
   .metrics {
     grid-template-columns: 1fr;
   }
