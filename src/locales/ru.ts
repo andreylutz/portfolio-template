@@ -2,7 +2,9 @@ const ru = {
   header: {
     brand: "Андрей Луценко",
     navAriaLabel: "Основная навигация",
-    languageAriaLabel: "Переключение языка"
+    languageAriaLabel: "Переключение языка",
+    openMenuAriaLabel: "Открыть меню",
+    closeMenuAriaLabel: "Закрыть меню"
   },
   nav: [
     { label: "Профиль", href: "#about" },
